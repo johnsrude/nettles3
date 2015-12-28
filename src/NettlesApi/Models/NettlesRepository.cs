@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Data.Entity;
-using NettlesApi.Models;
 
 namespace NettlesApi.Models
 {
     public class NettlesRepository : INettlesRepository
     {
-        private NettlesContext _db;
+        private readonly NettlesContext _db;
 
         public NettlesRepository(NettlesContext context)
         {

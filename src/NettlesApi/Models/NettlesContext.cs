@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.Data.Entity;
 
 namespace NettlesApi.Models
 {
