@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
+using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -29,6 +30,11 @@ namespace NettlesApi
         {
             // Add framework services.
             services.AddMvc();
+            services.AddEntityFramework()
+                .AddSqlServer()
+                .AddDbContext<NettlesContext>(
+                    options => { options.UseSqlServer(Configuration["Data:ConnectionString"]); });
+            services.AddSingleton<INettlesRepository, NettlesRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +48,8 @@ namespace NettlesApi
             app.UseStaticFiles();
 
             app.UseMvc();
+
+            SampleData.Initialize(app.ApplicationServices);
         }
 
         // Entry point for the application.

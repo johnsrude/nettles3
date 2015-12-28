@@ -9,12 +9,13 @@ namespace NettlesApi.Models
 {
     public class Show
     {
-        public int ShowId;
-        public DateTime Time;
-        public string Title;
-        public Address Address;
-        public string Note;
-        public string Url;
-        public IEnumerable<string> Callers;
+        public int ShowId { get; set; }
+        public DateTime Time { get; set; }
+        public string Title { get; set; }
+        public string Note { get; set; }
+        public string Url { get; set; }
+        public Venue Venue { get; set; }
+        public Image Image { get; set; }
+        public List<Caller> Callers { get; set; }
     }
 }
