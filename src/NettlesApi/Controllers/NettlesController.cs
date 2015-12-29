@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNet.Mvc;
+using NettlesApi.Filters;
 using NettlesApi.Models;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -7,6 +8,7 @@ using NettlesApi.Models;
 namespace NettlesApi.Controllers
 {
     [Route("api/nettles")]
+    [GenericExceptionFilter]
     public class NettlesController : Controller
     {
         public NettlesController(INettlesRepository repository)
@@ -24,14 +26,11 @@ namespace NettlesApi.Controllers
            return NettlesItems.GetAllShows();
         }
 
-        [HttpGet("{id}", Name = "GetShow")]
-        public IActionResult GetById(string id)
+        [HttpGet("GetShowById/{id}", Name = "GetShow")]
+        public IActionResult GetShowById(string id)
         {
             var item = NettlesItems.GetShow(id);
-            if (item == null)
-            {
-                return HttpNotFound();
-            }
+            if (item == null) return HttpNotFound();
             return new ObjectResult(item);
         }
 

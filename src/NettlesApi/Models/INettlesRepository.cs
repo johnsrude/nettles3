@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace NettlesApi.Models
 {
@@ -6,7 +7,7 @@ namespace NettlesApi.Models
     {
         void AddShow(Show show);
         List<Show> GetAllShows();
-        Show GetShow(string key);
+        IQueryable<Show> GetShow(string key);
         Show DeleteShow(string key);
         void UpdateShow(Show show);
     }

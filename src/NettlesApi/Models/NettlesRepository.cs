@@ -23,9 +23,10 @@ namespace NettlesApi.Models
             return _db.Shows.ToList();
         }
 
-        public Show GetShow(string key)
+        public IQueryable<Show> GetShow(string key)
         {
-            throw new NotImplementedException();
+            int showId;
+            return !int.TryParse(key, out showId) ? null : _db.Shows.Where(show => show.ShowId == showId);
         }
 
         public Show DeleteShow(string key)
