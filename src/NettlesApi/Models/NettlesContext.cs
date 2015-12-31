@@ -7,5 +7,6 @@ namespace NettlesApi.Models
         public DbSet<Show> Shows { get; set; }
         public DbSet<Venue> Venues { get; set; } 
         public DbSet<Image> Images { get; set; }
+        public DbSet<Caller> Callers { get; set; }
     }
 }

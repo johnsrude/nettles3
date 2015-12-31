@@ -26,8 +26,14 @@ namespace NettlesApi.Models
         public IQueryable<Show> GetShow(string key)
         {
             int showId;
-            return !int.TryParse(key, out showId) ? null : _db.Shows.Where(show => show.ShowId == showId);
+            return !int.TryParse(key, out showId) ? null : _db.Shows.Where(show => show.Id == showId);
         }
+
+        public IQueryable<Caller> GetCallersByShow(string key)
+        {
+            return GetShow(key)?.FirstOrDefault()?.Callers.AsQueryable();
+        }
+
 
         public Show DeleteShow(string key)
         {

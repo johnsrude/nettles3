@@ -8,8 +8,8 @@ using NettlesApi.Models;
 namespace NettlesApi.Migrations
 {
     [DbContext(typeof(NettlesContext))]
-    [Migration("20151222192018_Initial")]
-    partial class Initial
+    [Migration("20151231014607_Next")]
+    partial class Next
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,84 +19,90 @@ namespace NettlesApi.Migrations
 
             modelBuilder.Entity("NettlesApi.Models.Caller", b =>
                 {
-                    b.Property<int>("CallerId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("FullName");
+                    b.Property<string>("FullName")
+                        .IsRequired();
 
-                    b.Property<int?>("ShowShowId");
+                    b.Property<int?>("ShowId");
 
                     b.Property<string>("Url");
 
-                    b.HasKey("CallerId");
+                    b.HasKey("Id");
                 });
 
             modelBuilder.Entity("NettlesApi.Models.Image", b =>
                 {
-                    b.Property<int>("ImageId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<byte[]>("Picture");
+                    b.Property<byte[]>("Picture")
+                        .IsRequired();
 
-                    b.HasKey("ImageId");
+                    b.HasKey("Id");
                 });
 
             modelBuilder.Entity("NettlesApi.Models.Show", b =>
                 {
-                    b.Property<int>("ShowId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ImageImageId");
+                    b.Property<int?>("ImageId");
 
                     b.Property<string>("Note");
 
                     b.Property<DateTime>("Time");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired();
 
                     b.Property<string>("Url");
 
-                    b.Property<int?>("VenueVenueId");
+                    b.Property<int?>("VenueId");
 
-                    b.HasKey("ShowId");
+                    b.HasKey("Id");
                 });
 
             modelBuilder.Entity("NettlesApi.Models.Venue", b =>
                 {
-                    b.Property<int>("VenueId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("City");
+                    b.Property<string>("City")
+                        .IsRequired();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<string>("Phone");
 
-                    b.Property<string>("State");
+                    b.Property<string>("State")
+                        .IsRequired();
 
                     b.Property<string>("StreetAddress");
 
                     b.Property<string>("Url");
 
-                    b.HasKey("VenueId");
+                    b.HasKey("Id");
                 });
 
             modelBuilder.Entity("NettlesApi.Models.Caller", b =>
                 {
                     b.HasOne("NettlesApi.Models.Show")
                         .WithMany()
-                        .HasForeignKey("ShowShowId");
+                        .HasForeignKey("ShowId");
                 });
 
             modelBuilder.Entity("NettlesApi.Models.Show", b =>
                 {
                     b.HasOne("NettlesApi.Models.Image")
                         .WithMany()
-                        .HasForeignKey("ImageImageId");
+                        .HasForeignKey("ImageId");
 
                     b.HasOne("NettlesApi.Models.Venue")
                         .WithMany()
-                        .HasForeignKey("VenueVenueId");
+                        .HasForeignKey("VenueId");
                 });
         }
     }

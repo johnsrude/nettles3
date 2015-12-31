@@ -20,14 +20,22 @@ namespace NettlesApi.Controllers
         public INettlesRepository NettlesItems { get; set; }
 
         // GET: api/values
-        [HttpGet]
+        [HttpGet("shows")]
         public List<Show> Get()
         {
            return NettlesItems.GetAllShows();
         }
 
-        [HttpGet("GetShowById/{id}", Name = "GetShow")]
+        [HttpGet("show/{id}")]
         public IActionResult GetShowById(string id)
+        {
+            var item = NettlesItems.GetShow(id);
+            if (item == null) return HttpNotFound();
+            return new ObjectResult(item);
+        }
+
+        [HttpGet("show/{id}/callers")]
+        public IActionResult GetCallersByShow(string id)
         {
             var item = NettlesItems.GetShow(id);
             if (item == null) return HttpNotFound();

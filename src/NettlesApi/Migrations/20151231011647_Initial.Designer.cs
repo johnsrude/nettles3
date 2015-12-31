@@ -8,9 +8,10 @@ using NettlesApi.Models;
 namespace NettlesApi.Migrations
 {
     [DbContext(typeof(NettlesContext))]
-    partial class NettlesContextModelSnapshot : ModelSnapshot
+    [Migration("20151231011647_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
@@ -58,7 +59,8 @@ namespace NettlesApi.Migrations
 
                     b.Property<string>("Url");
 
-                    b.Property<int?>("VenueId");
+                    b.Property<int?>("VenueId")
+                        .IsRequired();
 
                     b.HasKey("Id");
                 });
