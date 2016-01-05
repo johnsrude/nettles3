@@ -15,7 +15,8 @@ namespace NettlesApi.Models
 
         public void AddShow(Show show)
         {
-            throw new NotImplementedException();
+            _db.Shows.Add(show);
+            _db.SaveChanges();
         }
 
         public IEnumerable<Show> GetShows()

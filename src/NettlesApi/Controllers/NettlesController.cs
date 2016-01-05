@@ -31,7 +31,7 @@ namespace NettlesApi.Controllers
             return new ObjectResult(item);
         }
 
-        [HttpGet("show/{id}")]
+        [HttpGet("show/{id}", Name = "GetShow")]
         public IActionResult GetShow(string id)
         {
             if (id == null) return HttpBadRequest();
@@ -60,16 +60,15 @@ namespace NettlesApi.Controllers
         //--------------------------- POST ---------------------
 
         // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
+        [HttpPost("addshow")]
+        public IActionResult AddShow([FromBody] Show show)
         {
+            if (show == null) return HttpBadRequest();
+            Repository.AddShow(show);
+            return CreatedAtRoute("GetShow", new {controller = "Nettles", id=show.Id}, show);
         }
 
-        //--------------------------- PUT ---------------------
-
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
+    [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
