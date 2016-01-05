@@ -21,39 +21,35 @@ namespace NettlesApi.Models
 
         public IEnumerable<Show> GetShows()
         {
-            var result = _db.Shows.ToList();
-            return !result.Any() ? null : result;
+            return _db.Shows.ToList();
         }
 
-        public IQueryable<Show> GetShow(string key)
+        public IQueryable<Show> GetShow(int id)
         {
-            int showId;
-            if (!int.TryParse(key, out showId)) return null;
-            var result = _db.Shows.Where(show => show.Id == showId);
-            return !result.Any() ? null : result;
+            return _db.Shows.Where(show => show.Id == id);
         }
 
-        public IQueryable<Caller> GetCallersByShow(string key)
+        public IQueryable<Caller> GetCallersByShow(int id)
         {
-            var result = GetShow(key)?.FirstOrDefault()?.Callers.AsQueryable();
-            return result == null || !result.Any() ? null : result;
+            return GetShow(id)?.FirstOrDefault()?.Callers.AsQueryable();
         }
 
 
-        public Show DeleteShow(string key)
+        public Show DeleteShow(int id)
         {
             throw new NotImplementedException();
         }
 
         public void UpdateShow(Show show)
         {
-            throw new NotImplementedException();
+            _db.Shows.Update(show);
+            _db.SaveChanges();
+            return;
         }
 
         public IEnumerable<Caller> GetCallers()
         {
-            var result = _db.Callers.ToList();
-            return !result.Any() ? null : result;
+            return _db.Callers.ToList();
         }
     }
 }

@@ -7,9 +7,9 @@ namespace NettlesApi.Models
     {
         void AddShow(Show show);
         IEnumerable<Show> GetShows();
-        IQueryable<Show> GetShow(string key);
-        IQueryable<Caller> GetCallersByShow(string key);
-        Show DeleteShow(string key);
+        IQueryable<Show> GetShow(int id);
+        IQueryable<Caller> GetCallersByShow(int id);
+        Show DeleteShow(int id);
         void UpdateShow(Show show);
         IEnumerable<Caller> GetCallers();
     }

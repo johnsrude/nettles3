@@ -30,7 +30,7 @@ namespace NettlesApi
                 .AddSqlServer()
                 .AddDbContext<NettlesContext>(
                     options => { options.UseSqlServer(Configuration["Data:ConnectionString"]); });
-            services.AddSingleton<INettlesRepository, NettlesRepository>();
+            services.AddScoped<INettlesRepository, NettlesRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
