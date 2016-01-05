@@ -53,7 +53,7 @@ namespace NettlesApi.Models
                         City = "Milwaukie",
                         State = "OR",
                         Phone = null,
-                        Url = null
+                        Url = null,
                     },
                     Callers = null,
                 },

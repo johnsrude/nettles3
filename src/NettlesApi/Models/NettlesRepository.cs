@@ -18,20 +18,24 @@ namespace NettlesApi.Models
             throw new NotImplementedException();
         }
 
-        public List<Show> GetAllShows()
+        public IEnumerable<Show> GetShows()
         {
-            return _db.Shows.ToList();
+            var result = _db.Shows.ToList();
+            return !result.Any() ? null : result;
         }
 
         public IQueryable<Show> GetShow(string key)
         {
             int showId;
-            return !int.TryParse(key, out showId) ? null : _db.Shows.Where(show => show.Id == showId);
+            if (!int.TryParse(key, out showId)) return null;
+            var result = _db.Shows.Where(show => show.Id == showId);
+            return !result.Any() ? null : result;
         }
 
         public IQueryable<Caller> GetCallersByShow(string key)
         {
-            return GetShow(key)?.FirstOrDefault()?.Callers.AsQueryable();
+            var result = GetShow(key)?.FirstOrDefault()?.Callers.AsQueryable();
+            return result == null || !result.Any() ? null : result;
         }
 
 
@@ -45,5 +49,10 @@ namespace NettlesApi.Models
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Caller> GetCallers()
+        {
+            var result = _db.Callers.ToList();
+            return !result.Any() ? null : result;
+        }
     }
 }

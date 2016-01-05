@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNet.Mvc;
 using NettlesApi.Filters;
 using NettlesApi.Models;
@@ -13,23 +14,36 @@ namespace NettlesApi.Controllers
     {
         public NettlesController(INettlesRepository repository)
         {
-            NettlesItems = repository;
+            Repository = repository;
         }
 
         [FromServices]
-        public INettlesRepository NettlesItems { get; set; }
+        public INettlesRepository Repository { get; set; }
+
+        //--------------------------- GET ---------------------
 
         // GET: api/values
         [HttpGet("shows")]
-        public List<Show> Get()
+        public IActionResult GetShows()
         {
-           return NettlesItems.GetAllShows();
+            var item = Repository.GetShows();
+            if (item == null || !item.Any()) return HttpNotFound();
+            return new ObjectResult(item);
         }
 
         [HttpGet("show/{id}")]
-        public IActionResult GetShowById(string id)
+        public IActionResult GetShow(string id)
         {
-            var item = NettlesItems.GetShow(id);
+            if (id == null) return HttpBadRequest();
+            var item = Repository.GetShow(id);
+            if (item == null) return HttpNotFound();
+            return new ObjectResult(item);
+        }
+
+        [HttpGet("callers")]
+        public IActionResult GetCallers()
+        {
+            var item = Repository.GetCallers();
             if (item == null) return HttpNotFound();
             return new ObjectResult(item);
         }
@@ -37,10 +51,13 @@ namespace NettlesApi.Controllers
         [HttpGet("show/{id}/callers")]
         public IActionResult GetCallersByShow(string id)
         {
-            var item = NettlesItems.GetShow(id);
+            if (id == null) return HttpBadRequest();
+            var item = Repository.GetCallersByShow(id);
             if (item == null) return HttpNotFound();
             return new ObjectResult(item);
         }
+
+        //--------------------------- POST ---------------------
 
         // POST api/values
         [HttpPost]
@@ -48,11 +65,17 @@ namespace NettlesApi.Controllers
         {
         }
 
+        //--------------------------- PUT ---------------------
+
+
         // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
+
+        //--------------------------- DELETE ---------------------
+
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
