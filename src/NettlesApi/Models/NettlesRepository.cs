@@ -35,9 +35,17 @@ namespace NettlesApi.Models
         }
 
 
-        public Show DeleteShow(int id)
+        public void DeleteShow(int id)
         {
-            throw new NotImplementedException();
+            // Only works for simple records.
+            //var item = new Show() {Id = id};
+            //_db.Shows.Attach(item);
+            //_db.Shows.Remove(item);
+
+            var item = GetShow(id)?.FirstOrDefault();
+            if (item == null) return;
+            _db.Shows.Remove(item);
+            _db.SaveChanges();
         }
 
         public void UpdateShow(Show show)

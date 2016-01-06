@@ -10,8 +10,11 @@ namespace NettlesApi.Models
         public static void Initialize(IServiceProvider serviceProvider)
         {
             var db = serviceProvider.GetService(typeof(NettlesContext)) as NettlesContext;
-
             if (db == null) return;
+
+            // For now, reset database for every new run. 
+            // Code to reset database on changes is below.
+            Clear(db);
 
             var shows = new List<Show>()
             {
@@ -59,18 +62,19 @@ namespace NettlesApi.Models
                 },
             };
 
-            if (db.Shows.Count() == shows.Count) return;
-            ClearDatabase(db);
+            //if (db.Shows.Count() == shows.Count) return;
+            //Clear(db);
             db.Shows.AddRange(shows);
             db.SaveChanges();
         }
 
-        private static void ClearDatabase(DbContext db)
+        private static void Clear(NettlesContext db)
         {
-            db.Database.ExecuteSqlCommand("delete from Venue");
-            db.Database.ExecuteSqlCommand("delete from Caller");
-            db.Database.ExecuteSqlCommand("delete from Image");
-            db.Database.ExecuteSqlCommand("delete from Show");
+            db.Shows.RemoveRange(db.Shows);
+            db.Callers.RemoveRange(db.Callers);
+            db.Images.RemoveRange(db.Images);
+            db.Venues.RemoveRange(db.Venues);
         }
+
     }
 }
