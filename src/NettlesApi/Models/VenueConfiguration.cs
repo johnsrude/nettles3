@@ -10,6 +10,10 @@ namespace NettlesApi.Models
             builder.Property(p => p.Name).IsRequired();
             builder.Property(p => p.City).IsRequired();
             builder.Property(p => p.State).IsRequired();
+            builder
+                .HasMany(v => v.Shows)
+                .WithOne(s => s.Venue)
+                ; //.HasForeignKey(s => s.VenueId);
         }
     }
 }

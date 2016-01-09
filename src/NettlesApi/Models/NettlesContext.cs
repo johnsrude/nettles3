@@ -16,6 +16,7 @@ namespace NettlesApi.Models
             new ShowConfiguration(builder.Entity<Show>());
             new CallerConfiguration(builder.Entity<Caller>());
             new ImageConfiguration(builder.Entity<Image>());
+            new VenueConfiguration(builder.Entity<Venue>());
         }
     }
 }
