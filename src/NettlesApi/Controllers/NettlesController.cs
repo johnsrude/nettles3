@@ -21,7 +21,15 @@ namespace NettlesApi.Controllers
 
         //--------------------------- GET ---------------------
 
-        [HttpGet("shows")]
+        [HttpGet("show/{id}", Name = "GetShow")]
+        public IActionResult GetShow(int id)
+        {
+            var item = Db.GetShow(id);
+            if (!item.Any()) return HttpNotFound();
+            return new ObjectResult(item);
+        }
+
+        [HttpGet("shows", Name = "GetShows")]
         public IActionResult GetShows()
         {
             var item = Db.GetShows();
@@ -29,10 +37,18 @@ namespace NettlesApi.Controllers
             return new ObjectResult(item);
         }
 
-        [HttpGet("show/{id}", Name = "GetShow")]
-        public IActionResult GetShow(int id)
+        [HttpGet("nextshow", Name = "GetNextShow")]
+        public IActionResult GetNextShow(int id)
         {
-            var item = Db.GetShow(id);
+            var item = Db.GetNextShow();
+            if (!item.Any()) return HttpNotFound();
+            return new ObjectResult(item);
+        }
+
+        [HttpGet("nextshows", Name = "GetNextShows")]
+        public IActionResult GetNextShows()
+        {
+            var item = Db.GetNextShows();
             if (!item.Any()) return HttpNotFound();
             return new ObjectResult(item);
         }

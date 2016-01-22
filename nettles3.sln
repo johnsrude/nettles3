@@ -14,6 +14,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "nettles3", "src\nettles3\ne
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NettlesApi", "src\NettlesApi\NettlesApi.xproj", "{91173741-D0F8-44BD-8C5A-9F33A29A2ED0}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ClassLibrary1", "src\ClassLibrary1\ClassLibrary1.xproj", "{9A3903D4-F733-45A9-AD1F-1224DE8EA146}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{91173741-D0F8-44BD-8C5A-9F33A29A2ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91173741-D0F8-44BD-8C5A-9F33A29A2ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91173741-D0F8-44BD-8C5A-9F33A29A2ED0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A3903D4-F733-45A9-AD1F-1224DE8EA146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A3903D4-F733-45A9-AD1F-1224DE8EA146}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A3903D4-F733-45A9-AD1F-1224DE8EA146}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A3903D4-F733-45A9-AD1F-1224DE8EA146}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,5 +41,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{FD70A296-6B22-471F-A01C-D985F71166E0} = {89BFEC6F-60B9-4BA0-AF9F-55AD74E3A5C1}
 		{91173741-D0F8-44BD-8C5A-9F33A29A2ED0} = {89BFEC6F-60B9-4BA0-AF9F-55AD74E3A5C1}
+		{9A3903D4-F733-45A9-AD1F-1224DE8EA146} = {89BFEC6F-60B9-4BA0-AF9F-55AD74E3A5C1}
 	EndGlobalSection
 EndGlobal

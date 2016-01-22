@@ -31,6 +31,7 @@ namespace NettlesApi.Models
 
         public IQueryable<Caller> GetCallersByShow(int id)
         {
+            // TODO: Only returns one caller.
             return GetShow(id)?.FirstOrDefault()?.Callers.AsQueryable();
         }
 
@@ -58,6 +59,16 @@ namespace NettlesApi.Models
         public IEnumerable<Caller> GetCallers()
         {
             return _db.Callers.ToList();
+        }
+
+        public IQueryable<Show> GetNextShow()
+        {
+            return (IQueryable<Show>) GetNextShows().First();
+        }
+
+        public IEnumerable<Show> GetNextShows()
+        {
+           return _db.Shows.Where(s => s.Time >= DateTime.Now).OrderBy(s => s.Time).ToList();
         }
     }
 }

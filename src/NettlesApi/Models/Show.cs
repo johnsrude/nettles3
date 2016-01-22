@@ -11,7 +11,7 @@ namespace NettlesApi.Models
         public DateTime Time { get; set; } // Local time to venue. No need for UTC
         public string Title { get; set; }
         public string Note { get; set; }
-        public string Url { get; set; }
+        public string ShowUrl { get; set; }
         public Image Image { get; set; }
         public int VenueId;
         public Venue Venue { get; set; }

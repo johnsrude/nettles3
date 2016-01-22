@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNet.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NettlesApi.Models;
+using NettlesLibrary.ViewModels; // TODO: Bug in VS 2015 and APS.NET 5 prevents this from being referenced.
 
 namespace NettlesApi
 {
@@ -45,6 +47,10 @@ namespace NettlesApi
 
             app.UseMvc();
 
+            // AutoMapper
+            Mapper.Initialize(i => i.CreateMap< Show, ShowViewModel>());
+
+            // Test Data
             SampleData.Initialize(app.ApplicationServices);
         }
 

@@ -12,5 +12,7 @@ namespace NettlesApi.Models
         void DeleteShow(int id);
         void UpdateShow(Show show);
         IEnumerable<Caller> GetCallers();
+        IQueryable<Show> GetNextShow();
+        IEnumerable<Show> GetNextShows();
     }
 }

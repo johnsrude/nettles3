@@ -49,7 +49,7 @@ namespace NettlesApi.Models
                     Time = new DateTime(2016, 1, 9, 20, 0, 0),
                     Title = "Portland Country Dance Community Contra Dance",
                     Note = "Beginner's lesson at 7:30 pm",
-                    Url = "http://www.portlandcountrydance.org/Dances.htm",
+                    ShowUrl = "http://www.portlandcountrydance.org/Dances.htm",
                     Image = null,
                     Venue = fulton,
                     Callers = new List<Caller>()
@@ -65,7 +65,7 @@ namespace NettlesApi.Models
                     Time = new DateTime(2016, 3, 13, 0, 0, 0),
                     Title = "Portland Roadhouse Contra Dance",
                     Note = null,
-                    Url = "http://portlandroadhouse.org/",
+                    ShowUrl = "http://portlandroadhouse.org/",
                     Image = null,
                     Venue = milwaukie,
                     Callers = null,
